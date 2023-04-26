@@ -3,7 +3,7 @@ import Input from "../../components/input";
 import Layout from "../../components/layout";
 import TextArea from "../../components/textarea";
 
-const Create: NextPage = () => {
+function Create() {
   return (
     <Layout canGoBack title="Go Live">
       <form className=" space-y-4 py-10 px-4">
@@ -21,6 +21,6 @@ const Create: NextPage = () => {
       </form>
     </Layout>
   );
-};
+}
 
 export default Create;
