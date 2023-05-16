@@ -1,7 +1,12 @@
+import client from "@libs/server/client";
+import withHandler from "@libs/server/withHandler";
 import type { NextApiRequest, NextApiResponse } from "next/types";
+<<<<<<< HEAD
 import withHandler from "@libs/server/withHandler";
 import client from "@libs/server/client";
 import { PrismaClient } from "@prisma/client";
+=======
+>>>>>>> 1f4c68ac3c7b3c1e565646235c5c7016310940cf
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { phone, email } = req.body;
