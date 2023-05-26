@@ -1,7 +1,6 @@
 import client from "@libs/server/client";
 import withHandler, { RespoonseType } from "@libs/server/withHandler";
 import type { NextApiRequest, NextApiResponse } from "next/types";
-import { PrismaClient } from "@prisma/client";
 
 async function handler(
   req: NextApiRequest,
