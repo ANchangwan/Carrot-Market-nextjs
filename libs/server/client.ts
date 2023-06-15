@@ -7,7 +7,7 @@ declare global {
 const client = global.cient || new PrismaClient();
 
 if (process.env.NODE_ENV === "development") {
-  global.client = clientl;
+  global.client = client;
 }
 
 export default new PrismaClient();
