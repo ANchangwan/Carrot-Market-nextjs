@@ -1,6 +1,8 @@
 import Button from "@components/button";
 import Layout from "@components/layout";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import useSWR from "swr";
 
 function ItemDetail() {
@@ -18,9 +20,11 @@ function ItemDetail() {
             <div className="w-12 h-12 rounded-full bg-slate-300" />
             <div>
               <p className="text-sm font-medium text-gray-700">Steve Jebs</p>
-              <p className="text-xs font-medium text-gray-500">
-                View profile &rarr;
-              </p>
+              <Link href={`/users/profiles/${data?.product?.user?.id}`}>
+                <p className="text-xs font-medium text-gray-500">
+                  View profile &rarr;
+                </p>
+              </Link>
             </div>
           </div>
           <div className="mt-5">

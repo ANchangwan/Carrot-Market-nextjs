@@ -13,6 +13,15 @@ async function handler(
     where: {
       id: +id.toString(),
     },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          avatar: true,
+        },
+      },
+    },
   });
   res.json({ ok: true, product });
 }
