@@ -1,7 +1,6 @@
-import { withIronSessionApiRoute } from "iron-session/next";
+import { NextApiRequest, NextApiResponse } from "next";
+import withHandler, { ResponseType } from "@libs/server/withHandler";
 import client from "@libs/server/client";
-import withHandler, { RespoonseType } from "@libs/server/withHandler";
-import type { NextApiRequest, NextApiResponse } from "next/types";
 import { withApiSession } from "@libs/server/withSession";
 
 async function handler(
@@ -23,6 +22,7 @@ async function handler(
       },
     },
   });
+  console.log(product);
   res.json({ ok: true, product });
 }
 
@@ -30,6 +30,5 @@ export default withApiSession(
   withHandler({
     methods: ["GET"],
     handler,
-    isPrivate: true,
   })
 );

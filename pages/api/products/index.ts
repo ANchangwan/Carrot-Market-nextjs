@@ -1,6 +1,6 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import client from "@libs/server/client";
-import withHandler, { RespoonseType } from "@libs/server/withHandler";
+import withHandler, { ResponseType } from "@libs/server/withHandler";
 import type { NextApiRequest, NextApiResponse } from "next/types";
 import { withApiSession } from "@libs/server/withSession";
 
@@ -15,7 +15,7 @@ async function handler(
       products,
     });
   }
-  if (req.method === "method") {
+  if (req.method === "POST") {
     const {
       body: { name, price, description },
       session: { user },
@@ -33,6 +33,7 @@ async function handler(
         },
       },
     });
+    console.log(product);
     res.json({
       ok: true,
       product,

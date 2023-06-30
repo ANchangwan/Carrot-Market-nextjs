@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 
 interface UploadProductForm {
   name: string;
-  price: string;
+  price: number;
   description: string;
 }
 

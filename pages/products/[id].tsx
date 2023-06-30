@@ -2,12 +2,21 @@ import Button from "@components/button";
 import Layout from "@components/layout";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import useSWR from "swr";
+import { Product, User } from "@prisma/client";
+
+interface ProductWithUser extends Product {
+  user: User;
+}
+
+interface ItemDetailResponse {
+  ok: boolean;
+  product: ProductWithUser;
+}
 
 function ItemDetail() {
   const router = useRouter();
-  const { data } = useSWR(
+  const { data } = useSWR<ItemDetailResponse>(
     router.query.id ? `/api/products/${router.query.id} ` : null
   );
 
@@ -19,7 +28,9 @@ function ItemDetail() {
           <div className="flex cursor-pointer py-3 border-t border-b items-center space-x-3">
             <div className="w-12 h-12 rounded-full bg-slate-300" />
             <div>
-              <p className="text-sm font-medium text-gray-700">Steve Jebs</p>
+              <p className="text-sm font-medium text-gray-700">
+                {data?.product?.user?.name}
+              </p>
               <Link href={`/users/profiles/${data?.product?.user?.id}`}>
                 <p className="text-xs font-medium text-gray-500">
                   View profile &rarr;
