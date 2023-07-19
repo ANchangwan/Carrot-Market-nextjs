@@ -3,6 +3,7 @@ import client from "@libs/server/client";
 import withHandler, { ResponseType } from "@libs/server/withHandler";
 import type { NextApiRequest, NextApiResponse } from "next/types";
 import { withApiSession } from "@libs/server/withSession";
+import { Post } from "@prisma/client";
 
 async function handler(
   req: NextApiRequest,
@@ -10,6 +11,7 @@ async function handler(
 ) {
   const {
     query: { id },
+    session: { user },
   } = req;
   const post = await client.post.findUnique({
     where: {
@@ -50,10 +52,21 @@ async function handler(
       error: "Not Found Post",
     });
   }
-
+  const isWondering = Boolean(
+    await client.wondering.findFirst({
+      where: {
+        postId: +id.toString(),
+        userId: user?.id,
+      },
+      select: {
+        id: true,
+      },
+    })
+  );
   res.json({
     ok: true,
     post,
+    isWondering,
   });
 }
 
@@ -61,6 +74,5 @@ export default withApiSession(
   withHandler({
     methods: ["GET"],
     handler,
-    isPrivate: true,
   })
 );
