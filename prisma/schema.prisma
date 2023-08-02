@@ -88,7 +88,7 @@ model Wondering {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId    Int
+  postId    Int      @default(1)
 }
 
 model Review {
@@ -100,6 +100,7 @@ model Review {
   createdById  Int
   createdFor   User     @relation(name: "receivedReviews", fields: [createdForId], references: [id], onDelete: Cascade)
   createdForId Int
+  score        Int      @default(1)
 }
 
 model Sale {
