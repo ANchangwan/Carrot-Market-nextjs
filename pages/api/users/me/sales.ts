@@ -16,6 +16,7 @@ async function handler(
       userId: user?.id,
     },
   });
+  console.log(sales);
   res.json({
     ok: true,
     sales,

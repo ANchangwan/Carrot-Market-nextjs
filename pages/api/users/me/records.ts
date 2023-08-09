@@ -3,6 +3,7 @@ import client from "@libs/server/client";
 import withHandler, { ResponseType } from "@libs/server/withHandler";
 import type { NextApiRequest, NextApiResponse } from "next/types";
 import { withApiSession } from "@libs/server/withSession";
+import { Kind } from "@prisma/client";
 
 async function handler(
   req: NextApiRequest,
@@ -12,13 +13,13 @@ async function handler(
     session: { users },
     query: { kind },
   } = req;
-  console.log(users);
-  //   const records = await clinet.record.findMany({
-  //     where: {
-  //       userId: user?.id,
-  //       kind: kind,
-  //     },
-  //   });
+  console.log(Kind);
+  const records = await clinet.record.findMany({
+    where: {
+      userId: user?.id,
+      kind: kind as Kind,
+    },
+  });
   console.log(records);
   res.json({
     ok: true,
