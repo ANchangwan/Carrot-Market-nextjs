@@ -9,7 +9,7 @@ async function handler(
   res: NextApiResponse<ResponseType>
 ) {
   const {
-    session: { users },
+    session: { user },
   } = req;
   const favs = await clinet.favs.findMany({
     where: {

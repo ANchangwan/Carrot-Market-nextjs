@@ -1,23 +1,25 @@
-import { withIronSessionApiRoute } from "iron-session/next";
-import client from "@libs/server/client";
+import { NextApiRequest, NextApiResponse } from "next";
 import withHandler, { ResponseType } from "@libs/server/withHandler";
-import type { NextApiRequest, NextApiResponse } from "next/types";
+import client from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
-import { Kind } from "@prisma/client";
+import { type } from "@libs/client/utils";
 
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
 ) {
   const {
-    session: { users },
+    session: { user },
     query: { kind },
   } = req;
-  console.log(Kind);
-  const records = await clinet.record.findMany({
+
+  const records = await client.record.findMany({
     where: {
       userId: user?.id,
-      kind: kind as Kind,
+      kind: type(kind),
+    },
+    include: {
+      product: true,
     },
   });
   console.log(records);

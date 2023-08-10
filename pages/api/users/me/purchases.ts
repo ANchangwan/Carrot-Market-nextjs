@@ -1,7 +1,6 @@
-import { withIronSessionApiRoute } from "iron-session/next";
-import client from "@libs/server/client";
+import { NextApiRequest, NextApiResponse } from "next";
 import withHandler, { ResponseType } from "@libs/server/withHandler";
-import type { NextApiRequest, NextApiResponse } from "next/types";
+import client from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 
 async function handler(
@@ -9,11 +8,15 @@ async function handler(
   res: NextApiResponse<ResponseType>
 ) {
   const {
-    session: { users },
+    session: { user },
   } = req;
-  const purchases = await clinet.purchase.findMany({
+
+  const purchases = await client.purchase.findMany({
     where: {
       userId: user?.id,
+    },
+    include: {
+      product: true,
     },
   });
   res.json({
@@ -26,6 +29,5 @@ export default withApiSession(
   withHandler({
     methods: ["GET"],
     handler,
-    isPrivate: true,
   })
 );

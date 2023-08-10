@@ -54,7 +54,7 @@ model Product {
   favs        Fav[]
   sales       Sale[]
   purchases   Purchase[]
-  Record      Record[]
+  records     Record[]
 }
 
 model Post {
