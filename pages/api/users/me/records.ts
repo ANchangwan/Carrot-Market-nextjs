@@ -19,7 +19,15 @@ async function handler(
       kind: type(kind),
     },
     include: {
-      product: true,
+      product: {
+        include: {
+          _count: {
+            select: {
+              favs: true,
+            },
+          },
+        },
+      },
     },
   });
   console.log(records);

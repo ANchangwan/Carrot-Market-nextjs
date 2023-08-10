@@ -1,8 +1,12 @@
+interface TypeRespons {
+  type: "favs" | "sales" | "purchases";
+}
+
 export function cls(...classnames: string[]) {
   return classnames.join(" ");
 }
 
-export function type(type: string) {
+export function type({ type }: TypeResponse) {
   switch (type) {
     case "fav":
       return "Fav";
