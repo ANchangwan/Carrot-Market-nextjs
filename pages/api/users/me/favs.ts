@@ -11,7 +11,8 @@ async function handler(
   const {
     session: { user },
   } = req;
-  const favs = await clinet.favs.findMany({
+  console.log(user);
+  const favs = await client.fav.findMany({
     where: {
       userId: user?.id,
     },
