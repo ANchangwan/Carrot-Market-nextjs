@@ -20,6 +20,7 @@ interface MutationResult {
 }
 
 function Enter() {
+  
   const [enter, { loading, data, error }] =
     useMutation<MutationResult>("/api/users/enter");
   const [confirmToken, { loading: tokenLoading, data: tokenData }] =

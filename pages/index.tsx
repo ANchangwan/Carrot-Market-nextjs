@@ -19,7 +19,6 @@ interface ProductsResponse {
 function Home() {
   const { user, isLoading } = useUser();
   const { data } = useSWR<ProductsResponse>("/api/products");
-
   return (
     <Layout title="홈" hasTabBar>
       <Head>

@@ -1,4 +1,4 @@
-interface TypeRespons {
+interface TypeResponse {
   type: "favs" | "sales" | "purchases";
 }
 
