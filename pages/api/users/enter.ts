@@ -6,7 +6,7 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
 ) {
-  const public = "public";
+  
   const { phone, email } = req.body;
   const user = phone ? { phone } : email ? { email } : null;
   const payload = Math.floor(100000 + Math.random() * 900000) + "";

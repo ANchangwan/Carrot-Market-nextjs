@@ -10,6 +10,7 @@ export default function useCoords() {
     latitude: null,
     longitude: null,
   });
+  
   const onSuccess = ({
     coords: { latitude, longitude },
   }: GeolocationPosition) => {

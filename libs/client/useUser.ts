@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import { User } from "@prisma/client";
+
 
 interface ProfileResponse {
   ok: boolean;
-  profile: User;
+  profile:User;
 }
 
 export default function useUser() {
