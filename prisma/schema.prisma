@@ -147,5 +147,5 @@ model Record {
 enum Kind {
   Purchase
   Sale
-  Fav
+  Fav 
 }

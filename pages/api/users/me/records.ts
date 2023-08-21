@@ -3,6 +3,7 @@ import withHandler, { ResponseType } from "@libs/server/withHandler";
 import client from "@libs/server/client";
 import { withApiSession } from "@libs/server/withSession";
 import { type } from "@libs/client/utils";
+import { Kind } from "@prisma/client";
 
 async function handler(
   req: NextApiRequest,
@@ -16,7 +17,7 @@ async function handler(
   const records = await client.record.findMany({
     where: {
       userId: user?.id,
-      kind: type(kind),
+      kind: kind as Kind,
     },
     include: {
       product: {
@@ -30,7 +31,6 @@ async function handler(
       },
     },
   });
-  console.log(records);
   res.json({
     ok: true,
     records,

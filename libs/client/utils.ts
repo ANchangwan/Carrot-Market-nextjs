@@ -1,4 +1,4 @@
-interface TypeRespons {
+interface TypeResponse {
   type: "favs" | "sales" | "purchases";
 }
 
@@ -8,14 +8,13 @@ export function cls(...classnames: string[]) {
 
 export function type({ type }: TypeResponse) {
   switch (type) {
-    case "fav":
+    case "favs":
       return "Fav";
-    case "purchase":
+    case "purchases":
       return "Purchase";
-    case "sale":
+    case "sales":
       return "Sale";
     default:
-      return res.json({ ok: false });
       break;
   }
 }

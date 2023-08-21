@@ -4,6 +4,12 @@ import withHandler, { ResponseType } from "@libs/server/withHandler";
 import type { NextApiRequest, NextApiResponse } from "next/types";
 import { withApiSession } from "@libs/server/withSession";
 
+interface LatLongType{
+  latitude:any
+  longitude:any
+}
+
+
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>
@@ -32,10 +38,10 @@ async function handler(
   }
   if (req.method === "GET") {
     const {
-      query: { latitude, longitude },
+      query: { latitude, longitude},
     } = req;
-    const parsedLatitude = parseFloat(latitude.toString());
-    const parsedLongitude = parseFloat(longitude.toString());
+    const parsedLatitude = parseFloat(latitude?.toString());
+    const parsedLongitude = parseFloat(longitude?.toString());
     const posts = await client.post.findMany({
       include: {
         user: {
