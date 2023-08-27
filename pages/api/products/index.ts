@@ -1,4 +1,3 @@
-import { withIronSessionApiRoute } from "iron-session/next";
 import client from "@libs/server/client";
 import withHandler, { ResponseType } from "@libs/server/withHandler";
 import type { NextApiRequest, NextApiResponse } from "next/types";
@@ -41,7 +40,7 @@ async function handler(
         },
       },
     });
-    console.log(product);
+    
     res.json({
       ok: true,
       product,

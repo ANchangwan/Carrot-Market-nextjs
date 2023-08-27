@@ -13,15 +13,19 @@ async function handler(
     query: { id },
     session: { user },
   } = req;
-  const alreadyExists = await client.wondering.findFirst({
-    where: {
-      userId: user?.id,
-      postId: +id.toString(),
-    },
-    select: {
-      id: true,
-    },
-  });
+  
+  if(id !== undefined){
+    const alreadyExists = await client.wondering.findFirst({
+      where: {
+        userId: user?.id,
+        postId: +id!.toString(),
+      },
+      select: {
+        id: true,
+      },
+    });
+  
+
 
   if (alreadyExists) {
     await client.wondering.delete({
@@ -48,6 +52,7 @@ async function handler(
   res.json({
     ok: true,
   });
+}
 }
 
 export default withApiSession(

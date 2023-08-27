@@ -5,6 +5,7 @@ import TextArea from "@components/textarea";
 import useMutation from "@libs/client/useMutation";
 import { Stream } from "@prisma/client";
 import { useRouter } from "next/router";
+import { format } from "path";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
@@ -21,8 +22,8 @@ interface CreatResponse{
 
 function Create() {
   const router = useRouter();
-  const [createStream, {loading, data}] = useMutation<CreatResponse>(`/api/streams`)
-  const {register,handleSubmit} = useForm<CreateForm>()
+  const [createStream, {loading, data}] = useMutation<CreatResponse>(`/api/streams`);
+  const {register,handleSubmit} = useForm<CreateForm>();
   const onValid = (form:CreateForm) =>{
     if(loading) return;
     createStream(form);
@@ -37,7 +38,7 @@ function Create() {
       <form onSubmit={handleSubmit(onValid)} className=" space-y-4 py-10 px-4">
         <Input register={register("name", {required:true})} required label="Name" name="name" type="text" />
         <Input
-          register={register("price", {required:true})}
+          register={register("price", {required:true, valueAsNumber:true})}
           required
           label="Price"
           name="price"

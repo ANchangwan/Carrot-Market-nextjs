@@ -24,7 +24,7 @@ async function handler(
       },
       post: {
         connect: {
-          id: +id.toString(),
+          id: +id!.toString(),
         },
       },
       answer,
