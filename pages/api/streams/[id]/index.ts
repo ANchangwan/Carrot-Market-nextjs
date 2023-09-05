@@ -10,9 +10,23 @@ async function handler(
     const {
         query:{id}
     } = req;
-    const stream = await client.stream.findUnique({
+    const stream = await client.streams.findUnique({
         where:{
             id:+id!.toString()
+        },
+        include:{
+          Message:{
+            select:{
+              id:true,
+              message:true,
+              user:{
+                select:{
+                  avatar:true,
+                  id:true,
+                }
+              }
+            }
+          }
         }
     })
     res.json({

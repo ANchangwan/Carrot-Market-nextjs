@@ -3,7 +3,7 @@ import Input from "@components/input";
 import Layout from "@components/layout";
 import TextArea from "@components/textarea";
 import useMutation from "@libs/client/useMutation";
-import { Stream } from "@prisma/client";
+import { Streams } from "@prisma/client";
 import { useRouter } from "next/router";
 import { format } from "path";
 import { useEffect } from "react";
@@ -17,7 +17,7 @@ interface CreateForm{
 
 interface CreatResponse{
   ok:boolean;
-  stream:Stream;
+  stream:Streams;
 }
 
 function Create() {

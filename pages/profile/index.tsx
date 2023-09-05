@@ -4,6 +4,8 @@ import Layout from "@components/layout";
 import useUser from "@libs/client/useUser";
 import useSWR from "swr";
 import { cls } from "@libs/client/utils";
+import { Review, User } from "@prisma/client";
+
 
 interface ReviewWithUser extends Review {
   createdBy: User;
